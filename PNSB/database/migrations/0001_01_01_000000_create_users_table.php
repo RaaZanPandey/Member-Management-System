@@ -14,7 +14,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('mobile', 20)->unique();
             $table->string('password');
-            $table->date('dob');
             $table->enum('role', ['user', 'admin'])->default('admin');
             $table->timestamps(); 
         });

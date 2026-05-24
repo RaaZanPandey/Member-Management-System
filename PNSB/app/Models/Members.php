@@ -14,19 +14,17 @@ class Members extends Model
     protected $fillable = [
         'name',
         'phone_number',
+        'registration_number',
         'blood_group',
         'father_or_husband_name',
         'dob',
-        'permanent_address',
-        'temporary_address',
+        'address',
+        'area',
         'postal_code',
-        'email',
         'interest',
         'profession',
         'position',
-        'monthly_income',
         'workplace_name',
-        'workplace_postal_code',
         'education_qualification',
         'number_of_family_members',
         'registration_date',
@@ -35,13 +33,13 @@ class Members extends Model
         'donation',
         'total',
         'reference_by',
+        'is_board_members',
         'membership_type'
     ];
 
     protected $casts = [
         'dob' => 'date',
         'registration_date' => 'date',
-        'monthly_income' => 'decimal:2',
         'registration_fee' => 'decimal:2',
         'society_fee' => 'decimal:2',
         'donation' => 'decimal:2',

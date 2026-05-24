@@ -11,15 +11,13 @@ class AuthController extends Controller
        $request->validate([
            'name'     => 'required|string|max:255',
             'mobile'   => 'required|string|max:20|unique:users',
-            'password' => 'required|string|min:6',
-            'dob'      => 'required|date',
+            'password' => 'required|string|min:6'
        ]);
 
        $user = User::create([
             'name'     => $request->name,
             'mobile'   => $request->mobile,
             'password' => $request->password,
-            'dob'      => $request->dob,
             'role'     => 'admin', 
        ]);
 

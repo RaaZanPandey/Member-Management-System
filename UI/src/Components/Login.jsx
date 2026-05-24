@@ -4,24 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Login = () => {
-  const [remember, setRemember] = useState(false)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // new state
   const navigate = useNavigate();
-  
-  async function handelSubmit(e){
+
+  async function handelSubmit(e) {
     e.preventDefault()
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login', 
+      const response = await axios.post('http://127.0.0.1:8000/api/login',
         {
           'mobile': username,
-          'password':password
+          'password': password
         },
         { withCredentials: true },
       )
-      if(response.status == 200){
-         localStorage.setItem('authToken', response.data.token);
+      if (response.status == 200) {
+        localStorage.setItem('authToken', response.data.token);
 
         console.log(response.data)
         toast.success("Login succesfully!");
@@ -50,13 +49,13 @@ const Login = () => {
 
           <div className="flex items-center border border-gray-300 rounded px-3 py-2 gap-2">
             <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
             </svg>
             <input
               type="text"
               value={username}
-              onChange={(e)=>{setUsername(e.target.value)}}
-              placeholder="Username"
+              onChange={(e) => { setUsername(e.target.value) }}
+              placeholder="Phone number"
               className="text-sm text-gray-600 outline-none w-full placeholder-gray-400 h-7"
             />
           </div>
@@ -64,12 +63,12 @@ const Login = () => {
           {/* Password field with toggle */}
           <div className="flex items-center border border-gray-300 rounded px-3 py-2 gap-2 relative">
             <svg className="w-4 h-4 text-gray-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3-9H9V6a3 3 0 0 1 6 0v2z"/>
+              <path d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3-9H9V6a3 3 0 0 1 6 0v2z" />
             </svg>
             <input
               type={showPassword ? "text" : "password"}
               value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               className="text-sm text-gray-600 outline-none w-full placeholder-gray-400 h-7"
             />
@@ -93,13 +92,16 @@ const Login = () => {
           </div>
 
           <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={remember}
-              onChange={() => setRemember(!remember)}
-              className="w-3.5 h-3.5 accent-blue-600"
-            />
-            <span className="text-xs text-gray-500">Remember me</span>
+            <span className="text-sm text-gray-600">
+              Don't have an account?{" "}
+              <button
+                type="button"
+                onClick={() => navigate("/register")}
+                className="text-blue-600 hover:text-blue-700 hover:underline font-medium bg-transparent border-none cursor-pointer p-0"
+              >
+                Sign up
+              </button>
+            </span>
           </label>
 
           <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 rounded transition-colors duration-150 w-full h-8">
