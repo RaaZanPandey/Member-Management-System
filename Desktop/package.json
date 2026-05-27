@@ -1,0 +1,41 @@
+{
+  "name": "pnsb-desktop",
+  "version": "1.0.0",
+  "description": "PNSB Member Management System",
+  "author": "PNSB",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.pnsb.management",
+    "productName": "Society Management",
+    "directories": {
+      "output": "C:\\Users\\DELL\\Desktop\\release"
+    },
+    "files": [
+      "main.js"
+    ],
+    "extraResources": [
+      {
+        "from": "resources",
+        "to": "resources"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "signAndEditExecutable": false,
+      "verifyUpdateCodeSignature": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "publish": null
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.0.0"
+  }
+}
